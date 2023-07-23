@@ -34,8 +34,10 @@ const SingleTodo: React.FC<Props> = ({
       <div style={{ display: "flex", cursor: "pointer", gap: "8px" }}>
         <FaEdit
           onClick={() => {
-            handleEdit(todo);
-            setIsEdit(true);
+            if (!todo.isDone) {
+              handleEdit(todo);
+              setIsEdit(true);
+            }
           }}
         />
         <FaTrash onClick={() => handleDelete(todo.id)} />

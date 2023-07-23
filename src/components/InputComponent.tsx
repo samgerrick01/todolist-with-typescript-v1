@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./style.css";
 
 interface Props {
@@ -15,6 +15,13 @@ const InputComponent: React.FC<Props> = ({
   isEdit,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+    if (!isEdit) {
+      inputRef.current?.blur();
+    }
+  }, [isEdit]);
 
   return (
     <form
